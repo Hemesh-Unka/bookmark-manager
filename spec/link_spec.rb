@@ -1,6 +1,5 @@
 require 'link'
 describe Link do
-
   describe '.all' do
     it 'returns all links' do
       links = Link.all
