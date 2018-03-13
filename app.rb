@@ -10,5 +10,11 @@ class BookmarkManager < Sinatra::Base
   get '/input-link' do
     erb :input_link
   end
+
+  post '/add-link' do
+    p params
+    redirect '/'
+  end
+
   run! if app_file == $0
 end
