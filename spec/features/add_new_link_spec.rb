@@ -4,16 +4,16 @@ feature 'Add a new link' do
     expect(page).to have_button('Add Link')
   end
 
-  scenario 'When a user clicks add link, they are redirected to the add link page' do
+  scenario 'A user is redirected to a add a link page' do
     visit('/')
     click_on('Add Link')
     expect(page).to have_selector('input')
   end
 
-  scenario 'On submition of a link, I expect the link to be added to the homepage' do
+  scenario 'A link is submitted, check if link is added to the list' do
     visit('/')
     click_on('Add Link')
-    fill_in('url', :with => 'http://www.featuretest.com')
+    fill_in('url', with: 'http://www.featuretest.com')
     click_on('Add Link')
     expect(page).to have_content('http://www.featuretest.com')
   end

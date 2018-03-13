@@ -12,12 +12,12 @@ class Link
     result.map { |link| link['url'] }
   end
 
-  def self.add(url)
+  def self.create(options)
     if ENV['ENVIROMENT'] == 'test'
       connection = PG.connect(dbname: 'bookmark_manager_test')
     else
       connection = PG.connect(dbname: 'bookmark_manager')
     end
-    result = connection.exec("INSERT INTO links(url) VALUES('#{url}')")
-    end
+    connection.exec("INSERT INTO links (url) VALUES('#{options[:url]}')")
+  end
 end
