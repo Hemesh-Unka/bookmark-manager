@@ -13,8 +13,8 @@ feature 'Add a new link' do
   scenario 'On submition of a link, I expect the link to be added to the homepage' do
     visit('/')
     click_on('Add Link')
-    fill_in('url', :with => 'www.testacademy.com')
+    fill_in('url', :with => 'http://www.featuretest.com')
     click_on('Add Link')
-    expect(page).to have_content('www.testacademy.com')
+    expect(page).to have_content('http://www.featuretest.com')
   end
 end
