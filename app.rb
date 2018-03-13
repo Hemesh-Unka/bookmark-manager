@@ -7,5 +7,8 @@ class BookmarkManager < Sinatra::Base
     erb :index
   end
 
+  get '/input-link' do
+    erb :input_link
+  end
   run! if app_file == $0
 end

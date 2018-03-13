@@ -7,6 +7,6 @@ feature 'Add a new link' do
   scenario 'When user clicks add link, he is redirected to the add link page' do
     visit('/')
     click_on('Add Link')
-    expect(page).to have_field('Link URL', type: 'text')
+    expect(page).to have_selector('input')
   end
 end
