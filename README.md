@@ -15,3 +15,17 @@ I would like to see a list of links on the homepage
 ║            ║<---------------------║            ║
 ╚════════════╝                      ╚════════════╝
 ```
+
+```
+As a user
+So that I can add my favorite website to my list
+I would like to be able to submit my website to be added to the list
+```
+
+```
+╔════════════╗         .add         ╔════════════╗
+║            ║--------------------->║            ║
+║ Controller ║    url of website    ║    Link    ║
+║            ║<---------------------║            ║
+╚════════════╝    [array of links]  ╚════════════╝
+```
