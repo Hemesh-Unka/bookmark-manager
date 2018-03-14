@@ -1,10 +1,11 @@
-p 'Setting up test database...'
-
 require 'pg'
 # connect to the database
+p 'Setting up test database...'
+
 connection = PG.connect(dbname: 'bookmark_manager_test')
 
 # clear the test data
+p 'Clearing test database...'
 connection.exec('TRUNCATE links;')
 
 # Insert test data
