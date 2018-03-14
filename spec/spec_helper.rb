@@ -5,6 +5,8 @@ require File.join(File.dirname(__FILE__), '..', 'app.rb')
 require 'capybara'
 require 'capybara/rspec'
 require 'rspec'
+require 'rake'
+Rake.application.load_rakefile
 
 Capybara.app = BookmarkManager
 
@@ -25,7 +27,7 @@ Capybara.app = BookmarkManager
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   config.before(:each) do
-    require_relative './test_database_setup'
+    Rake::Task['test_database_setup'].execute
   end
 
   # rspec-expectations config goes here. You can use an alternate

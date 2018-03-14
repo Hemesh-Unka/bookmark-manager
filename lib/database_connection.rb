@@ -8,7 +8,6 @@ class DatabaseConnection
   def self.query(query)
     @connection.exec(query)
   end
-
 # this avoids class_variable_get command
   def self.connection
     @connection
