@@ -22,8 +22,18 @@ describe Link do
     end
 
     it 'does not create a new link if the URL is invalid' do
-      Link.create(url: 'Not a real url')
-      expect(Link.all).not_to include('Not a real url')
+      Link.create(title: 'Not a real title')
+      expect(Link.all).not_to include('Not a real title')
+    end
+  end
+
+  describe '.delete' do
+    it 'deletes a link' do
+      Link.create(title: 'Delete unit test', url: 'http://www.deleteunittest.com')
+      links = Link.all
+      Link.delete(links.map(&:id).last)
+
+      expect(Link.all).not_to include('Delete unit test')
     end
   end
 end

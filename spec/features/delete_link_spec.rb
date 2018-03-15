@@ -1,10 +1,12 @@
 feature 'Delete an existing link' do
-  scenario 'A link is submitted, check if link is added to the list' do
+  scenario 'User clicks on Delete and link is removed from list' do
     visit('/')
     click_on('Add Link')
-    fill_in('title', with: 'feature test')
-    fill_in('url', with: 'http://www.featuretest.com')
+    fill_in('title', with: 'delete link feature test')
+    fill_in('url', with: 'http://www.delete-link.com')
     click_on('Add Link')
-    expect(page).to have_content('feature test')
+
+    page.find('li', text: 'delete link feature test').click_button('Delete')
+    expect(page).not_to have_content('delete link feature test')
   end
 end

@@ -1,8 +1,16 @@
 <%= styled_flash %>
 
-<ul>
+<ul class='links-list'>
   <% @links.each do |link| %>
-    <li><a href="<%= link.url %>"><%= link.title %></a></li>
+    <li>
+      <a id="<%= link.id %>" href="<%= link.url %>">
+       <%= link.title %>
+      </a>
+
+      <form action="delete-link" method="post">
+        <button type='submit' name="id" value="<%= link.id %>">Delete</button>
+      </form>
+    </li>
   <% end %>
 </ul>
 
