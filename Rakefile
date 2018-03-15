@@ -10,9 +10,9 @@ task :test_database_setup do
 
   p 'Populating test database...'
   # Insert test data
-  connection.exec("INSERT INTO links VALUES(1, 'http://www.makersacademy.com');")
-  connection.exec("INSERT INTO links VALUES(2, 'http://www.google.com');")
-  connection.exec("INSERT INTO links VALUES(3, 'http://www.facebook.com');")
+  connection.exec("INSERT INTO links VALUES(1, 'Makers Academy', 'http://www.makersacademy.com');")
+  connection.exec("INSERT INTO links VALUES(2, 'Google', 'http://www.google.com');")
+  connection.exec("INSERT INTO links VALUES(3, 'Facebook', 'http://www.facebook.com');")
   p 'Completed populating test database'
 end
 
@@ -21,7 +21,8 @@ task :setup do
     connection = PG.connect
     p "Setting up #{database} from scratch..."
     connection.exec("CREATE DATABASE #{database};")
-    connection.exec("CREATE #{database} ('id' SERIAL PRIMARY KEY, url VARCHAR(60));")
+    connection = PG.connect(dbname: database)
+    connection.exec("CREATE TABLE links(id SERIAL PRIMARY KEY, title VARCHAR(60), url VARCHAR(60));")
     p "#{database} database setup completed"
   end
 end

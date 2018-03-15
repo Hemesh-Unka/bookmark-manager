@@ -3,14 +3,22 @@ require 'uri'
 require_relative 'database_connection'
 
 class Link
+  attr_reader :id, :url, :title
+
+  def initialize(url, title)
+    @id = id
+    @url = url
+    @title = title
+  end
+
   def self.all
-    result = DatabaseConnection.query('SELECT * FROM links')
-    result.map { |link| link['url'] }
+    result = DatabaseConnection.query('SELECT * FROM links;')
+    result.map { |link| Link.new(link['url'], link['title']) }
   end
 
   def self.create(options)
     return false unless is_url?(options[:url])
-    DatabaseConnection.query("INSERT INTO links (url) VALUES('#{options[:url]}')")
+    DatabaseConnection.query("INSERT INTO links (title, url) VALUES('#{options[:title]}', '#{options[:url]}');")
   end
 
   def self.is_url?(url)
