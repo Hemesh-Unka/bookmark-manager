@@ -16,8 +16,18 @@ class BookmarkManager < Sinatra::Base
     erb :add_link
   end
 
+  get '/update-link' do
+    @link = Link.select(params[:id])
+    erb :update_link
+  end
+
+  post '/update-link' do
+    Link.update(params[:id], params[:title], params[:url])
+    redirect '/'
+  end
+
   post '/create-link' do
-    flash[:notice] = 'You must submit a valid url' unless Link.create(url: params['url'], title: params['title'])
+    flash[:notice] = 'You must submit a valid url' unless Link.create(title: params['title'], url: params['url'])
     redirect '/'
   end
 

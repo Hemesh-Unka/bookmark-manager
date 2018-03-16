@@ -10,6 +10,9 @@
       <form action="delete-link" method="post">
         <button type='submit' name="id" value="<%= link.id %>">Delete</button>
       </form>
+      <form action="update-link" method="get">
+        <button type='submit' name="id" value="<%= link.id %>">Update</button>
+      </form>
     </li>
   <% end %>
 </ul>

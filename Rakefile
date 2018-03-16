@@ -23,6 +23,7 @@ task :setup do
     connection.exec("CREATE DATABASE #{database};")
     connection = PG.connect(dbname: database)
     connection.exec("CREATE TABLE links(id SERIAL PRIMARY KEY, title VARCHAR(60), url VARCHAR(60));")
+    #connection.exec("ALTER SEQUENCE links_id_seq RESTART WITH 1")
     p "#{database} database setup completed"
   end
 end

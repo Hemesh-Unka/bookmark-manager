@@ -3,9 +3,9 @@ require 'uri'
 require_relative 'database_connection'
 
 class Link
-  attr_reader :id, :url, :title
+  attr_reader :id, :title, :url
 
-  def initialize(id, url, title)
+  def initialize(id, title, url)
     @id = id
     @url = url
     @title = title
@@ -13,7 +13,7 @@ class Link
 
   def self.all
     result = DatabaseConnection.query('SELECT * FROM links;')
-    result.map { |link| Link.new(link['id'], link['url'], link['title']) }
+    result.map { |link| Link.new(link['id'], link['title'], link['url']) }
   end
 
   def self.create(options)
@@ -23,6 +23,15 @@ class Link
 
   def self.delete(id)
     DatabaseConnection.query("DELETE FROM links WHERE id = #{id};")
+  end
+
+  def self.select(id)
+    result = DatabaseConnection.query("SELECT id, title, url FROM links WHERE id = #{id};")[0]
+    Link.new(result['id'], result['title'], result['url'])
+  end
+
+  def self.update(id, title, url)
+    DatabaseConnection.query("UPDATE links SET title='#{title}', url='#{url}' WHERE id = #{id};")
   end
 
   def self.is_url?(url)

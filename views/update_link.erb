@@ -1,0 +1,6 @@
+<form action="/update-link" method="post">
+  <input type="text" name="id" value="<%= @link.id %>" readonly="readonly">
+  <input type="text" name="title" value="<%= @link.title %>">
+  <input type="text" name="url" value="<%= @link.url %>">
+  <button type="submit">Update Link</button>
+</form>

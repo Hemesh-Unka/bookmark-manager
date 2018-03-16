@@ -29,11 +29,35 @@ describe Link do
 
   describe '.delete' do
     it 'deletes a link' do
-      Link.create(title: 'Delete unit test', url: 'http://www.deleteunittest.com')
+      Link.create(title: 'Delete unit test', url: 'http://www.delete-unit-test.com')
       links = Link.all
       Link.delete(links.map(&:id).last)
 
       expect(Link.all).not_to include('Delete unit test')
+    end
+  end
+
+  describe '.select' do
+    it 'gets a link' do
+      Link.create(title: 'Select unit test', url: 'http://www.select-unit-test.com')
+      links = Link.all
+
+      link_object = Link.select(links.map(&:id).last)
+      expect(link_object.title).to include('Select unit test')
+    end
+  end
+
+  describe '.update' do
+    it 'updates a link' do
+      Link.create(title: 'Old update unit test', url: 'http://www.update-unit-test.com')
+      links = Link.all
+
+      last_link_id = links.map(&:id).last
+      Link.update(last_link_id, 'New update unit test', 'http://www.update-unit-test.com')
+
+      links = Link.all
+      last_link_title = links.map(&:title).last
+      expect(last_link_title).to eq('New update unit test')
     end
   end
 end
