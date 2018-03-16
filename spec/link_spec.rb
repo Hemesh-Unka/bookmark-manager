@@ -50,14 +50,11 @@ describe Link do
   describe '.update' do
     it 'updates a link' do
       Link.create(title: 'Old update unit test', url: 'http://www.update-unit-test.com')
-      links = Link.all
 
-      last_link_id = links.map(&:id).last
-      Link.update(last_link_id, 'New update unit test', 'http://www.update-unit-test.com')
+      last_link_object = Link.all.last
 
-      links = Link.all
-      last_link_title = links.map(&:title).last
-      expect(last_link_title).to eq('New update unit test')
+      Link.update(last_link_object.id, { title: 'New update unit test', url: last_link_object.url })
+      expect(Link.all.last.title).to include('New update unit test')
     end
   end
 end

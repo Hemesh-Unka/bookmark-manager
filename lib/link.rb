@@ -30,8 +30,8 @@ class Link
     Link.new(result['id'], result['title'], result['url'])
   end
 
-  def self.update(id, title, url)
-    DatabaseConnection.query("UPDATE links SET title='#{title}', url='#{url}' WHERE id = #{id};")
+  def self.update(id, params)
+    DatabaseConnection.query("UPDATE links SET title='#{params[:title]}', url='#{params[:url]}' WHERE id = #{id};")
   end
 
   def self.is_url?(url)

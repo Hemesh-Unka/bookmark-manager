@@ -1,7 +1,6 @@
 feature 'Delete an existing link' do
   scenario 'User clicks on Delete and link is removed from list' do
-    visit('/')
-    click_on('Add Link')
+    visit('/links/add')
     fill_in('title', with: 'delete link feature test')
     fill_in('url', with: 'http://www.delete-link.com')
     click_on('Add Link')
